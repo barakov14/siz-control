@@ -1,0 +1,34 @@
+{
+  "projects": {
+    "api/core": {
+      "type": "library",
+      "root": "libs/api/core",
+      "entryFile": "index",
+      "sourceRoot": "libs/api/core/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/api/core/tsconfig.lib.json"
+      }
+    },
+    "api/common": {
+      "type": "library",
+      "root": "libs/api/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/api/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/api/common/tsconfig.lib.json"
+      }
+    },
+    "api/auth": {
+      "type": "library",
+      "root": "libs/api/auth",
+      "entryFile": "index",
+      "sourceRoot": "libs/api/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/api/auth/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
