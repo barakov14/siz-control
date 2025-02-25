@@ -18,13 +18,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # This enables task distribution via Nx Cloud
-      # Run this command as early as possible, before dependencies are installed
-      # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
-      # Uncomment this line to enable task distribution
-      # - run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
-
-      # Cache node_modules
+      # Подключаем кэш node_modules
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -34,26 +28,33 @@ jobs:
       - run: npx cypress install
       - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: npx nx-cloud record -- echo Hello World
-      # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-      # When you enable task distribution, run the e2e-ci task instead of e2e
-      - run: npx nx affected -t lint test build e2e
+      # Запускаем линтер, тесты, сборку
+      # - run: npx nx affected -t lint test build e2e
 
+      # 🔥 Кэшируем Firebase CLI (правильная папка)
       - name: 🔥 Кэш Firebase CLI
         id: cache-firebase-tools
         uses: actions/cache@v3
         with:
-          path: ~/.npm/firebase-tools
+          path: ~/.cache/firebase
           key: firebase-tools-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
+      # 🚀 Устанавливаем Firebase CLI (если нет в кеше)
       - name: 🚀 Установка Firebase CLI (если нет в кеше)
         if: steps.cache-firebase-tools.outputs.cache-hit != 'true'
         run: npm install -g firebase-tools
 
+#      # 📢 Добавляем Firebase проект (используем секрет для ID проекта)
+#      - name: 🔥 Настройка Firebase проекта
+#        env:
+#          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+#        run: firebase use --add "$FIREBASE_PROJECT_ID"
+
+      # 🚀 Деплой в Firebase (хостинг)
       - name: 🚀 Деплой в Firebase
         env:
-          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ADMIN_JSON }}
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_ADMIN }}
         run: |
-          echo "$FIREBASE_SERVICE_ACCOUNT_ADMIN_JSON" > FIREBASE_SERVICE_ACCOUNT_JSON.json
-          firebase deploy --only hosting
+          echo "$FIREBASE_SERVICE_ACCOUNT_JSON" > firebase-key.json
+          firebase auth:login --non-interactive
+          firebase deploy --only hosting --token "$(firebase login:ci --no-localhost)"
