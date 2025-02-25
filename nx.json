@@ -16,7 +16,10 @@
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml",
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "nxCloudId": "67b30f89fd2afb07f5eb0314",
   "targetDefaults": {
