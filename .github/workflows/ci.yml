@@ -39,3 +39,21 @@ jobs:
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       # When you enable task distribution, run the e2e-ci task instead of e2e
       - run: npx nx affected -t lint test build e2e
+
+      - name: 🔥 Кэш Firebase CLI
+        id: cache-firebase-tools
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm/firebase-tools
+          key: firebase-tools-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: 🚀 Установка Firebase CLI (если нет в кеше)
+        if: steps.cache-firebase-tools.outputs.cache-hit != 'true'
+        run: npm install -g firebase-tools
+
+      - name: 🚀 Деплой в Firebase
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ADMIN_JSON }}
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT_ADMIN_JSON" > FIREBASE_SERVICE_ACCOUNT_JSON.json
+          firebase deploy --only hosting
