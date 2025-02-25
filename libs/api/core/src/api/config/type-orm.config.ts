@@ -10,9 +10,9 @@ export const typeOrmConfig = (configService: ConfigService): TypeOrmModuleOption
   username: configService.get<string>('DATABASE_USERNAME'),
   password: configService.get<string>('DATABASE_PASSWORD'),
   database: configService.get<string>('DATABASE_NAME'),
-  entities: [__dirname + '/../**/*.entity{.ts,.js}'], // Автозагрузка сущностей
-  synchronize: true, // Отключить в продакшене
-  autoLoadEntities: true, // Только для NestJS
+  entities: [__dirname + '/../**/*.entity{.ts}'],
+  synchronize: true,
+  autoLoadEntities: true,
 });
 
 export const dataSourceConfig = (configService: ConfigService): DataSourceOptions => ({
@@ -22,8 +22,8 @@ export const dataSourceConfig = (configService: ConfigService): DataSourceOption
   username: configService.get<string>('DATABASE_USERNAME'),
   password: configService.get<string>('DATABASE_PASSWORD'),
   database: configService.get<string>('DATABASE_NAME'),
-  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: true, // В проде ставим false
+  entities: [__dirname + '/../**/*.entity{.ts}'],
+  synchronize: true,
 });
 
 export const createDataSource = (configService: ConfigService): DataSource =>
