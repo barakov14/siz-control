@@ -1,4 +1,4 @@
-name: CI
+name: NX CI/CD Pipeline
 
 on:
   push:
@@ -13,25 +13,34 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+      FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+      FIREBASE_DEPLOY_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: 🚀 Checkout репозитория
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Подключаем кэш node_modules
-      - uses: actions/setup-node@v4
+      - name: ⚡ Установка Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      - run: npm ci --legacy-peer-deps
-#      - run: npx cypress install
+      - name: 📦 Установка зависимостей
+        run: npm ci --legacy-peer-deps
+
       - uses: nrwl/nx-set-shas@v4
 
       # Запускаем линтер, тесты, сборку
-      # - run: npx nx affected -t lint test build e2e
+      - name: 🔍 Линтинг кода
+#        run: npx nx affected -t lint test build e2e
 
-      # 🔥 Кэшируем Firebase CLI (правильная папка)
+      # 🔥 Кэшируем Firebase CLI
       - name: 🔥 Кэш Firebase CLI
         id: cache-firebase-tools
         uses: actions/cache@v3
@@ -44,17 +53,15 @@ jobs:
         if: steps.cache-firebase-tools.outputs.cache-hit != 'true'
         run: npm install -g firebase-tools
 
-#      # 📢 Добавляем Firebase проект (используем секрет для ID проекта)
-#      - name: 🔥 Настройка Firebase проекта
-#        env:
-#          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-#        run: firebase use --add "$FIREBASE_PROJECT_ID"
+      # 📢 Добавляем Firebase проект
+      - name: 🔥 Настройка Firebase проекта
+        run: firebase use --add "$FIREBASE_PROJECT_ID"
 
-      # 🚀 Деплой в Firebase (хостинг)
+      # 🚀 Деплой в Firebase (с токеном вместо логина)
       - name: 🚀 Деплой в Firebase
-        env:
-          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_ADMIN }}
         run: |
           echo "$FIREBASE_SERVICE_ACCOUNT_JSON" > firebase-key.json
-          firebase login --non-interactive
-          firebase deploy --only hosting --token "$(firebase login:ci --no-localhost)"
+          firebase deploy --only hosting --token "$FIREBASE_DEPLOY_TOKEN"
+
+      - name: ✅ Завершение CI в NX Cloud
+        run: npx nx-cloud stop-ci-run
