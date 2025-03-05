@@ -13,16 +13,26 @@
         "outputPath": "dist/apps/siz-control-mobile",
         "index": "apps/siz-control-mobile/src/index.html",
         "browser": "apps/siz-control-mobile/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/siz-control-mobile/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/siz-control-mobile/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
           }
         ],
-        "styles": ["apps/siz-control-mobile/src/styles.scss"],
+        "styles": [
+          "apps/siz-control-mobile/src/styles.scss",
+          "@taiga-ui/core/styles/taiga-ui-theme.less",
+          "@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "@taiga-ui/addon-mobile/styles/taiga-ui-mobile.less"
+        ],
         "scripts": []
       },
       "configurations": {

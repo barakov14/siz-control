@@ -1,0 +1,79 @@
+<sc-app-bar>
+  Размеры
+</sc-app-bar>
+<main class="wrapper">
+  <img src="/imgs/factory-worker.svg" alt="" class="illustraition" draggable="false">
+  <form [formGroup]="userSizesForm" class="user-size-form">
+    <tui-textfield
+      tuiTextfieldSize="s"
+    >
+      <label tuiLabel>Рост</label>
+      <input
+        placeholder="Enter height (cm)"
+        formControlName="height"
+        postfix=" cm"
+        tuiInputNumber
+        [min]="140"
+        [max]="240"
+        [readOnly]="disabled()"
+      />
+    </tui-textfield>
+    <tui-textfield
+      tuiTextfieldSize="s"
+      [style.width.rem]="10"
+    >
+      <label tuiLabel>Вес</label>
+      <input
+        placeholder="Enter weight (kg)"
+        formControlName="weight"
+        postfix=" kg"
+        tuiInputNumber
+        [min]="0"
+        [max]="300"
+        [readOnly]="disabled()"
+      />
+    </tui-textfield>
+    <tui-textfield
+      tuiTextfieldSize="s"
+      [style.width.rem]="10"
+    >
+      <label tuiLabel>Одежда</label>
+      <input
+        placeholder="Одежда"
+        formControlName="cloth"
+        tuiInputNumber
+        [min]="0"
+        [max]="100"
+        [readOnly]="disabled()"
+      />
+    </tui-textfield>
+    <tui-textfield
+      tuiTextfieldSize="s"
+      [style.width.rem]="10"
+    >
+      <label tuiLabel>Перчатки</label>
+      <input
+        placeholder="Перчатки"
+        formControlName="gloves"
+        tuiInputNumber
+        [min]="0"
+        [max]="100"
+        [readOnly]="disabled()"
+      />
+    </tui-textfield>
+    <tui-textfield
+      tuiTextfieldSize="s"
+      [style.width.rem]="10"
+    >
+      <label tuiLabel>Обувь</label>
+      <input
+        placeholder="Обувь"
+        formControlName="shoes"
+        tuiInputNumber
+        [min]="0"
+        [max]="55"
+        [readOnly]="disabled()"
+      />
+    </tui-textfield>
+  </form>
+</main>

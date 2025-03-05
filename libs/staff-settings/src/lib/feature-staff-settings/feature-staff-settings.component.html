@@ -1,0 +1,106 @@
+<sc-app-bar class="mb32">
+  Настройки
+</sc-app-bar>
+
+<div class="settings-wrapper">
+  <div tuiCardMedium tuiAppearance="neutral" class="list-item mb32">
+    <div class="user-container">
+      <div class="user">
+        <tui-avatar src="@tui.user" size="xl"/>
+        <div class="user-info">
+          <div class="name-surname" tuiTitle>
+            Әділхан Бараков
+          </div>
+          <div class="employee-position">
+            Системный администратор
+          </div>
+        </div>
+      </div>
+      <button class="user-setting-navigate" tuiRipple tuiButton appearance="flat">
+        <tui-icon icon="@tui.settings"/>
+      </button>
+    </div>
+  </div>
+
+  <div tuiCardMedium tuiAppearance="neutral" class="list-item mb32">
+    <div class="settings-container">
+      <h3 tuiTitle class="list-item__title">Общие настройки</h3>
+
+      <div class="settings-item">
+        <div class="settings-item__title">
+          <tui-icon icon="@tui.sun-moon" [class]="tuiDark() ? 'yellow' : 'blue'"/>
+          <span>Темный режим</span>
+        </div>
+        <input
+          tuiSwitch
+          type="checkbox"
+          [formControl]="darkModeControl"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div tuiCardMedium tuiAppearance="neutral" class="list-item mb32">
+    <div class="settings-container">
+      <h3 tuiTitle class="list-item__title">Уведомление</h3>
+
+      <div class="settings-item">
+        <div class="settings-item__title">
+          <tui-icon icon="@tui.bell" class="yellow"/>
+          <span>Звуковые оповощения</span>
+        </div>
+        <input
+          tuiSwitch
+          type="checkbox"
+        />
+      </div>
+      <div class="settings-item">
+        <div class="settings-item__title">
+          <tui-icon icon="@tui.bell" class="blue"/>
+          <span>Вибрация</span>
+        </div>
+        <input
+          tuiSwitch
+          type="checkbox"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- 3) НОВЫЙ блок "О приложении" (Версия, Политика, Условия) -->
+  <div tuiCardMedium tuiAppearance="neutral" class="list-item mb32">
+    <div class="settings-container">
+      <!-- Если нужен заголовок для группы — добавь -->
+      <!-- <h3 tuiTitle class="list-item__title">О приложении</h3> -->
+
+      <div class="settings-item">
+        <div class="settings-item__title">
+          <tui-icon icon="@tui.info"></tui-icon>
+          <span>Версия приложения</span>
+        </div>
+        <span>2.1.0</span>
+      </div>
+
+      <a class="settings-item" tuiRipple>
+        <div class="settings-item__title">
+          <tui-icon icon="@tui.shield"></tui-icon>
+          <span>Политика конфиденциальности</span>
+        </div>
+        <tui-icon icon="@tui.chevron-right"></tui-icon>
+      </a>
+
+      <a class="settings-item" tuiRipple>
+        <div class="settings-item__title">
+          <tui-icon icon="@tui.file"></tui-icon>
+          <span>Условия обслуживания</span>
+        </div>
+        <tui-icon icon="@tui.chevron-right"></tui-icon>
+      </a>
+    </div>
+  </div>
+
+  <button tuiButton tuiRipple appearance="flat" class="logout">
+    Выйти из аккаунта
+  </button>
+</div>
+

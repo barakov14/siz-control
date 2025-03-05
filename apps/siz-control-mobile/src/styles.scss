@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+[tuiRipple] {
+  position: relative;
+  user-select: none;
+  overflow: hidden;
+}
+
+.mb32 {
+  margin-bottom: 2rem;
+}

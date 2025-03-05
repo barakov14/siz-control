@@ -1,0 +1,43 @@
+<p class="pin-title">Пожалуйста, введите свой 6-значный PIN-код</p>
+
+<div class="pin-dots">
+  @for(i of [0, 1, 2, 3, 4, 5]; track $index) {
+    <div
+         class="dot"
+         [class.filled]="i < pin().length"></div>
+  }
+
+</div>
+
+<!-- Клавиатура -->
+<div class="pin-keyboard">
+  @for(digit of ['1','2','3','4','5','6','7','8','9']; track $index) {
+    <button
+      tuiButton
+      size="l"
+      class="pin-key"
+      appearance="flat-grayscale"
+      (click.silent)="addDigit(digit)"
+      tuiRipple
+    >
+      {{ digit }}
+    </button>
+  }
+  <button tuiButton size="l" appearance="flat-grayscale" class="pin-key fingerprint">
+    <tui-icon icon="@tui.fingerprint" />
+  </button>
+  <button
+    tuiButton
+    size="l"
+    class="pin-key"
+    appearance="flat-grayscale"
+    (click.silent)="addDigit('0')"
+    tuiRipple
+  >
+    0
+  </button>
+  <button tuiRipple tuiButton size="l" class="pin-key delete" appearance="flat-grayscale" (click)="removeDigit()">
+    <tui-icon icon="@tui.delete" />
+  </button>
+</div>
+<a tuiLink class="forgot-pin" (click.silent)="resetPin()">Забыли PIN?</a>

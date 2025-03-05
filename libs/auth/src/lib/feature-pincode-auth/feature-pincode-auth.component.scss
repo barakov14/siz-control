@@ -1,0 +1,107 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.pin-title {
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+/* Точки PIN-кода */
+.pin-dots {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--tui-background-neutral-1-hover);
+    transition: background-color 0.3s;
+
+    &.filled {
+      background-color: var(--tui-text-tertiary);
+    }
+  }
+}
+
+.pin-keyboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+  width: 100%;
+  max-width: 350px;
+
+  .pin-key {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+}
+
+/* Ссылка "Забыли PIN?" */
+.forgot-pin {
+  margin-top: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Полная адаптация под любые мобильные устройства
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  :host {
+    padding: 10px;
+  }
+
+  .pin-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .pin-dots {
+    gap: 10px;
+    margin-bottom: 16px;
+
+    .dot {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .pin-keyboard {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+    max-width: 300px;
+
+    .pin-key {
+      width: 70px;
+      height: 70px;
+      font-size: 20px;
+    }
+  }
+
+  .forgot-pin {
+    margin-top: 16px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .pin-keyboard {
+    max-width: 270px;
+
+    .pin-key {
+      width: 60px;
+      height: 60px;
+      font-size: 18px;
+    }
+  }
+}

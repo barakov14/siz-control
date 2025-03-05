@@ -1,0 +1,34 @@
+<div class="auth-container">
+  <div class="logo">
+    <tui-icon icon="@tui.shield" class="auth-logo"/>
+    <h2 class="auth-title">Авторизация</h2>
+  </div>
+
+  <form class="auth-form" [formGroup]="authForm" >
+    <tui-input class="auth-input" formControlName="username">
+      Имя пользователя
+      <input tuiTextfieldLegacy type="text" />
+    </tui-input>
+
+    <tui-input class="auth-input" formControlName="password">
+      Пароль
+      <input tuiTextfieldLegacy type="password" />
+    </tui-input>
+
+    <div class="auth-options">
+      <label>
+        <input
+          tuiCheckbox
+          type="checkbox"
+          size="m"
+          [formControl]="rememberMeControl"
+        />
+        Запомнить меня
+      </label>
+      <a href="#" class="forgot-password" tuiLink>Забыли пароль?</a>
+    </div>
+
+    <button tuiRipple tuiButton type="submit" size="l" class="auth-button">Войти</button>
+  </form>
+
+</div>

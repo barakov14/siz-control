@@ -1,0 +1,11 @@
+<h1 class="title">Доступные склады</h1>
+
+<main class="main">
+  @for(warehouse of data; track warehouse.id) {
+    <div class="keyvalue">
+      <div class="key">{{ warehouse.name }}</div>
+      <div class="value">{{ warehouse.location }}</div>
+    </div>
+  }
+</main>
+

@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 16px;
+  border-radius: 20px;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  background: none;
+
+  --tui-ripple-background: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
+}
+
+

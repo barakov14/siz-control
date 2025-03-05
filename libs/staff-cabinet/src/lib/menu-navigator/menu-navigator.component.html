@@ -1,0 +1,16 @@
+<sc-header>
+  Профиль
+</sc-header>
+
+<main class="main">
+  @for(item of menuNavigationItems; track $index) {
+    <button class="button tui-text_h2"
+         tuiRipple
+         (click.silent)="item.open()"
+    >
+      <tui-icon [icon]="item.icon"/>
+      <span>{{ item.title }}</span>
+    </button>
+  }
+
+</main>

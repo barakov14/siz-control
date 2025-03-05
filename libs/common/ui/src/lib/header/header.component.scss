@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 1rem;
+  background: var(--tui-background-base);
+}
+
+
+.title {
+  font-size: 20px;
+  line-height: 1.17;
+}

@@ -13,9 +13,22 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "useDefineForClassFields": false,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
-      "@sc-api/core": ["libs/api/core/src/index.ts"]
+      "@sc-client/auth": ["libs/auth/src/index.ts"],
+      "@sc-client/common/data-access": ["libs/common/data-access/src/index.ts"],
+      "@sc-client/common/ui": ["libs/common/ui/src/index.ts"],
+      "@sc-client/common/utils": ["libs/common/utils/src/index.ts"],
+      "@sc-client/config": ["libs/core/config/src/index.ts"],
+      "@sc-client/core/ui": ["libs/core/ui/src/index.ts"],
+      "@sc-client/staff-cabinet": ["libs/staff-cabinet/src/index.ts"],
+      "@sc-client/staff-notifications": [
+        "libs/staff-notifications/src/index.ts"
+      ],
+      "@sc-client/staff-settings": ["libs/staff-settings/src/index.ts"],
+      "@sc-client/staff-size": ["libs/staff-size/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

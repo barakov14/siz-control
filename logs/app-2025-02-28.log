@@ -1,0 +1,10 @@
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","timestamp":"2025-02-28T18:02:49.569Z"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api, GET} route","timestamp":"2025-02-28T18:02:49.574Z"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","timestamp":"2025-02-28T18:02:49.575Z"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","timestamp":"2025-02-28T18:02:49.578Z"}
+{"level":"info","message":"🚀 Application is running on: http://localhost:3000/api","timestamp":"2025-02-28T18:02:49.582Z"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/api}:","timestamp":"2025-02-28T18:09:21.362Z"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/api/api, GET} route","timestamp":"2025-02-28T18:09:21.373Z"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/api/auth}:","timestamp":"2025-02-28T18:09:21.375Z"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started","timestamp":"2025-02-28T18:09:21.385Z"}
+{"level":"info","message":"🚀 Application is running on: http://localhost:3000/api","timestamp":"2025-02-28T18:09:21.394Z"}
