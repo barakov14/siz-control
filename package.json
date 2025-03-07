@@ -71,6 +71,7 @@
     "@angular/cli": "~19.2.0",
     "@angular/compiler-cli": "19.2.1",
     "@angular/language-service": "19.2.1",
+    "@capacitor/cli": "^7.0.1",
     "@eslint/js": "^9.8.0",
     "@maskito/angular": "^3.2.1",
     "@nestjs/schematics": "^11.0.1",
